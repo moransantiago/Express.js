@@ -23,7 +23,6 @@ productsApi = app => {
             const { tags } = req.query;
 
             try {
-
                 const products = await productService.getProducts({ tags });
 
                 res.status(200).json({

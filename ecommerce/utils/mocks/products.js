@@ -64,9 +64,9 @@ const productsMocks = [
     }
 ];
 
-filteredProduct = tag => productsMocks.filter(product => product.tags.includes(tag));
+filteredProductsMock = tag => productsMocks.filter(product => product.tags.includes(tag));
 
-class ProductServiceMock {
+class ProductsServiceMock {
     async getProducts() {
         return Promise.resolve(productsMocks);
     }
@@ -78,6 +78,6 @@ class ProductServiceMock {
 
 module.exports = {
     productsMocks,
-    filteredProduct,
-    ProductServiceMock
+    filteredProductsMock,
+    ProductsServiceMock
 };
