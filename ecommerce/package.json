@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node ecommerce/index",
-    "dev": "nodemon ecommerce/index",
+    "start": "cross-env NODE_ENV=production node index",
+    "build": "cd public/assets/ && cleancss -o main.min.css main.css",
+    "dev": "nodemon index",
     "test": "mocha --exit"
   },
   "keywords": [],
@@ -15,8 +16,10 @@
     "bcrypt": "^3.0.6",
     "body-parser": "^1.19.0",
     "boom": "^7.3.0",
+    "cross-env": "^6.0.3",
     "dotenv": "^8.1.0",
     "express": "^4.17.1",
+    "helmet": "^3.21.2",
     "joi": "^14.3.1",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.3.2",
@@ -27,6 +30,7 @@
   },
   "devDependencies": {
     "chalk": "^2.4.2",
+    "clean-css-cli": "^4.3.0",
     "mocha": "^6.2.1",
     "nodemon": "^1.19.2",
     "proxyquire": "^2.1.3",

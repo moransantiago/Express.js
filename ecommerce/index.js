@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const boom = require('boom');
 const bodyParser = require('body-parser');
+const helmet = require('helmet');
 
 const {
     logErrors,
@@ -19,6 +20,7 @@ const requestIsAjaxOrApi = require('./utils/requestIsAjaxOrApi')
 const app = express();
 
 //  Middlewares
+app.use(helmet());
 app.use(bodyParser.json());
 
 //  Static files

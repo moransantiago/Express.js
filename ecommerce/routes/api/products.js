@@ -1,7 +1,7 @@
 const express = require('express');
 const passport = require('passport');
 
-const productService = require('../../services/products');  //<--The service to interact with mongo
+const productService = require('../../services/products');  //<--Products service (interacts with mongo)
 
 const validation = require('../../utils/middlewares/validationHandler');
 const {
@@ -13,6 +13,13 @@ const {
 
 require('../../utils/auth/strategies/jwt'); //<--Jwt Strategy to auth requests
 
+//  Setting cache
+const cacheResponse = require('../../utils/cacheResponse');
+const {
+    FIVE_MINUTES_IN_SECONDS,
+    SIXTY_MINUTES_IN_SECONDS
+} = require('../../utils/time');
+
 productsApi = app => {
     const router = express.Router();
     app.use('/api/products', router);
@@ -20,6 +27,7 @@ productsApi = app => {
     router.get( //<--Get all items
         '/',
         async (req, res, next) => {
+            cacheResponse(res, FIVE_MINUTES_IN_SECONDS);
             const { tags } = req.query;
 
             try {
@@ -38,6 +46,7 @@ productsApi = app => {
     router.get( //<--Get an specific item
         '/:productId',
         async (req, res, next) => {
+            cacheResponse(res, SIXTY_MINUTES_IN_SECONDS);
             const { productId } = req.params;
 
             try {
