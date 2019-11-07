@@ -3,6 +3,7 @@ const path = require('path');
 const boom = require('boom');
 const bodyParser = require('body-parser');
 const helmet = require('helmet');
+const cors = require('cors');
 
 const {
     logErrors,
@@ -21,6 +22,7 @@ const app = express();
 
 //  Middlewares
 app.use(helmet());
+app.use(cors());
 app.use(bodyParser.json());
 
 //  Static files
